@@ -4,6 +4,7 @@ namespace Wilr\SilverStripe\Storybook\Controllers;
 
 use Wilr\SilverStripe\Storybook;
 use SilverStripe\Core\ClassInfo;
+use SilverStripe\Control\Controller;
 
 class StorybookController extends Controller
 {
