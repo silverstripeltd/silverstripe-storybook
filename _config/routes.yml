@@ -1,0 +1,3 @@
+Silverstripe\Control\Director:
+  rules:
+    'storybook//$ID': 'Wilr\SilverStripe\Storybook\Controllers\StorybookController'

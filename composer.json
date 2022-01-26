@@ -1,0 +1,28 @@
+{
+    "name": "wilr/silverstripe-storybook",
+    "type": "silverstripe-vendormodule",
+    "description": "Integrate your server-side Silverstripe templates to Storybook Server",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "silverstripe",
+        "storybook"
+    ],
+    "authors": [
+        {
+            "name": "Will Rossiter",
+            "homepage": "https://www.fullscreen.io"
+        }
+    ],
+    "require": {
+        "silverstripe/framework": "^4.8",
+        "silverstripe/vendor-plugin": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wilr\\SilverStripe\\Storybook\\": "src/",
+            "Wilr\\SilverStripe\\Storybook\\Tests\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
