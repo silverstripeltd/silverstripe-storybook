@@ -3,10 +3,11 @@
 [![Version](http://img.shields.io/packagist/v/wilr/silverstripe-storybook.svg?style=flat-square)](https://packagist.org/packages/wilr/silverstripe-storybook)
 [![License](http://img.shields.io/packagist/l/wilr/silverstripe-storybook.svg?style=flat-square)](LICENSE)
 
-Helpers for rendering Silverstripe templates to a
-[Storybook Server](https://github.com/storybookjs/storybook/tree/next/app/server). Can be used in conjuction with
-[silverstripe-populate](https://github.com/silverstripe/silverstripe-populate) to build example components and for
-testing purposes.
+Helpers for rendering Silverstripe templates to a [Storybook
+Server](https://github.com/storybookjs/storybook/tree/next/app/server). Can be
+used in conjuction with
+[silverstripe-populate](https://github.com/silverstripe/silverstripe-populate)
+to build example components and for testing purposes.
 
 ## Setup
 
@@ -36,10 +37,12 @@ export const parameters = {
 
 ## Writing Stories
 
-See the [Storybook documentation](https://github.com/storybookjs/storybook/tree/next/app/server#server-rendering)
+See the [Storybook
+documentation](https://github.com/storybookjs/storybook/tree/next/app/server#server-rendering)
 for more information.
 
-In your `.storybook/main.js` provide a glob specifying the location of YAML / JSON story files, e.g.
+In your `.storybook/main.js` provide a glob specifying the location of YAML /
+JSON story files, e.g.
 
 ```js
 module.exports = {
@@ -71,13 +74,16 @@ module.exports = {
 }
 ```
 
-The only important line in this story is the `server.id` value. This will call the following Silverstripe endpoint to
-receive the template `storybook/carousel_default`. Next step is for your project code to tell this module how to
-render `carousel_default`.
+The only important line in this story is the `server.id` value. This will call
+the following Silverstripe endpoint to receive the template
+`storybook/carousel_default`. Next step is for your project code to tell this
+module how to render `carousel_default`.
 
-Rendering a story is managed entirely by your application code. Implement the `Storybook` interface on any class and
-define the `getStories` method. `getStories` should return a named array of ids and callable functions which render the
-data for Storybook. The function can either be defined inline, or link to another class or method.
+Rendering a story is managed entirely by your application code. Implement the
+`Storybook` interface on any class and define the `getStories` method.
+`getStories` should return a named array of ids and callable functions which
+render the data for Storybook. The function can either be defined inline, or
+link to another class or method.
 
 ```php
 <?php
@@ -101,3 +107,6 @@ class AppStorybook implements Storybook
     }
 }
 ```
+
+Storybook supports `args` and `argTypes` for stories. These come through to the
+backend as GET parameters.

@@ -2,9 +2,15 @@
 
 namespace Wilr\SilverStripe\Storybook\Controllers;
 
+use Exception;
 use Wilr\SilverStripe\Storybook\Storybook;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Control\Controller;
+use SilverStripe\Control\HTTPResponse;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\FieldType\DBString;
+use SilverStripe\View\ArrayData;
+use SilverStripe\View\Requirements;
 
 class StorybookController extends Controller
 {
@@ -36,6 +42,7 @@ class StorybookController extends Controller
         }
     }
 
+
     public function allowedActions($limitToClass = null)
     {
         return true;
@@ -64,7 +71,30 @@ class StorybookController extends Controller
         }
 
         $template = $stories[$key]();
+
+        if ($template instanceof HTTPResponse) {
+            $templateCopy = $template->getBody();
+        } elseif ($template instanceof DBString) {
+            $templateCopy = (string) $template;
+        } elseif (is_string($template)) {
+            $templateCopy = $template;
+        } else {
+            throw new Exception(
+                'Accessing storybook story '. $key .' is invalid. It must return a DBString or HTTPResponse class'
+            );
+        }
+
+        if (strpos($templateCopy, '<body') === false) {
+            // the template is a partial one, such as an include or otherwise
+            // so we should 'wrap' it in a base page template
+            $template = $this->customise(ArrayData::create([
+                'Content' => DBField::create_field('HTMLText', $templateCopy)
+            ]))->renderWith('Storybook');
+        }
+
         $response->setBody($template);
+
+        Requirements::include_in_response($response);
 
         return $response;
     }
