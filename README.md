@@ -1,4 +1,4 @@
-# Silverstripe Story Book
+# Silverstripe Storybook
 
 [![Version](http://img.shields.io/packagist/v/wilr/silverstripe-storybook.svg?style=flat-square)](https://packagist.org/packages/wilr/silverstripe-storybook)
 [![License](http://img.shields.io/packagist/l/wilr/silverstripe-storybook.svg?style=flat-square)](LICENSE)
