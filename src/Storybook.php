@@ -7,5 +7,5 @@ interface Storybook
     /**
      * @return array
      */
-    public function getStories();
+    public function getStories(?array $vars);
 }

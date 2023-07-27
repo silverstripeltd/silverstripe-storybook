@@ -62,8 +62,11 @@ class StorybookController extends Controller
         $sources = ClassInfo::implementorsOf(Storybook::class);
         $stories = [];
 
+        $request = $this->getRequest();
+        $vars = $request->getVars();
+
         foreach ($sources as $source) {
-            $stories = array_merge($stories, singleton($source)->getStories());
+            $stories = array_merge($stories, singleton($source)->getStories($vars));
         }
 
         if (!isset($stories[$key])) {
